@@ -1,0 +1,484 @@
+3.	Press Machine Data Analysis - FMD3-12500T
+
+3.1	 Data Collection
+•	For this analysis, we obtained several CSV files, as shared by BFL, containing IoT data for the FMD3-12500T Press machine for the April-August months. These were the tags:
+•	PositionMachine
+•	BackShaftLeft
+•	BackShaftRight
+•	MPClutchAirPressureRiseTime
+•	EccentricShaftRight
+•	EccentricShaftLeft
+•	PitmanLeft
+•	PitmanRight
+•	MainMotorTemperature
+•	FlywheelSpeedDropInPercentage
+•	MainMotorStartingTime
+•	CAMTime
+
+
+3.2	Data Preprocessing
+Data preprocessing is a crucial step in the data analysis pipeline. It involves cleaning and transforming raw data into a format that could be effectively used for analysis. The main tasks included:
+1.	Handling Missing Values: Identified and imputed or removed missing values.
+2.	Data Type Conversion: Ensured that each column had the correct data type.
+3.	Feature Engineering: Created new features that might have been useful for analysis.
+4.	Data Normalization: Scaled the features for analysis.
+
+Here's the heatmap of the correlation matrix, which provides a visual representation of how each sensor's readings are related to one another.
+
+• Red cells indicate a positive correlation.
+• Blue cells indicate a negative correlation.
+• The closer the value is to 1 or -1, the stronger the correlation.
+
+
+
+
+
+Some noteworthy observations:
+
+1.	BackShaftLeft and BackShaftRight have a strong positive correlation (0.95), indicating they often move in the same direction.
+2.	EccentricShaftRight, EccentricShaftLeft, and PitmanLeft also show strong positive correlations among themselves, with values ranging from 0.86 to 0.90.
+3.	MPClutchAirPressureRiseTime has a moderately negative correlation with CAMTime (-0.56).
+4.	FlywheelSpeedDropInPercentage has a moderate positive correlation with PositionMachine (0.25).
+
+3.3	Pattern Recognition
+Pattern recognition aims to identify regularities, trends, or anomalies in the data. Recognizing these patterns helped us understand the conditions leading up to machine failure and potentially prevented future downtimes and on the basis of this we claimed the findings in the Predictive Maintenance document
+We have conducted a preliminary analysis of the data for June, July, and August. Below are some key findings and points for discussion:
+ 
+1.	Incident Timing: While your email mentions the failure occurring on the midnight of August 28th, our algorithm indicates that the failure actually happened on the midnight of August 27th.
+  
+2.	Multiple Failures: We noticed evidence of more than one failure in the data provided.
+  
+3.	Predictive Capabilities: Our analysis suggests that these failures could have been predicted approximately 16 to 20 hours before they occurred. Implementing an hourly predictive algorithm can alert the shop floor in time to prevent unplanned downtime.
+  
+4.	Additional Sensors: The deployment of additional sensors, such as those for vibration and electrical signals, could enhance the prediction lead time. This will be increasingly effective as we scale up the algorithm.
+  
+5.	Data Consistency: The IoT data is generally consistent; however, we did notice some anomalous points likely due to sensor failures. These outliers are easily removable.
+  
+6.	Strong Correlations: Our data shows a strong correlation between component temperatures and also between positional and flywheel operations, indicating data reliability.
+  
+7.	Quality Indicators: Apart from failure indications, our algorithm also detected changes in normal operational patterns that could signify quality issues or product changeovers. Further investigation with machine operators and quality report from the plant is needed.
+These were the initial observations from the data.
+
+
+
+We focused on the following aspects:
+•	Data Visualization: Visualized the data and mapped it with the failure time.
+•	Time Series Analysis: Examined how key variables changed over time before the failure.
+•	Anomaly Detection: Identified any unusual patterns that deviated from the norm.
+•	Developing of Base Model: Developed a base model for failure prediction.
+
+The descriptive statistics for the "PitmanRight" parameter were as follows:
+•	Count: 180,669 data points
+•	Mean: Approximately 48.77
+•	Standard Deviation: Approximately 4.83
+•	Minimum Value: 34
+•	25th Percentile (Q1): 46
+•	Median (50th Percentile): 49
+•	75th Percentile (Q3): 52
+•	Maximum Value: 66
+The statistics provide a general overview, indicating some variability in the data (std of 4.83) but no extreme outliers (min of 34 and max of 66 relative to the mean of 48.77).
+
+The time series decomposition was successful. Here's what each component represents:
+o	Original Data: This is the original "PitmanRight" time series data.
+o	Trend: This shows the underlying trend in the data. There appears to be some fluctuation, but it's not very strong.
+o	Seasonal: This captures the seasonality in the data, which seems relatively constant.
+o	Residual: These are the residual components after removing the trend and seasonality. They represent the noise in the data.
+
+The trend component does not show a significant upward or downward trend, which generally indicates that the data is relatively stable except two days.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.4	Evidence for Observations:
+
+Our algorithm was able to detect any deviations in the process parameters that could lead to failure with time. We are able to detect failures before 20-36 hours. It focus on Pitman tempeature 
+
+
+•	Flywheel Speed Drop Anomaly:
+
+Our algorithm detected some of the anomalies related to FlywheelspeeddropInPercentage where the FlywheelspeeddropInPercentage decreased suddenly here is one of those instances on 7th August, we can clearly observe a significant change in the pattern of Flywheel Speed which might have affected the quality of the forged material later.
+
+•	Running Hours:
+
+On the basis of FlywheelSpeed and Main Machine Position tags we were able to find the running hours of the machine hour wise, day wise and month wise. Here are some of the bar plots for the same.
+
+
+M/s Bharat Forge Limited, Maharashtra
+
+Proposal for AI Analytics solution development and high level finding from 3 months data shared.
+
+Predict.AI
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+Submitted by: BLP Industry.AI
+26th September 2023
+V.1
+
+
+This Proposal contains all information that is strictly confidential and is for the intended person/organization only.  No part of this document can be made public in any form or content. Please advise the sender immediately if wrongly addressed and delete this document immediately.  
+ 
+M/s Bharat Forge Limited.    				 	Date: 26th September 2023
+
+Kind Attention:	Mr. Deepak Jaiswal 
+Manager – R&D, ITC
+			
+Subject: 	Proposal for AI Analytics solution development and high level finding from 3 months data shared.
+
+Dear Deepak,
+On Behalf of BLP Industry.AI Private Ltd (“Industry.AI”), we are pleased to submit our High-level Technical Proposal for AI Analytics solution development and high level finding from 3 months data shared 
+Industry.AI is committed to providing the “best in class services” available in the industry and to providing with a sustainable solution. 
+We look forward to your consent to work together.        
+Thanking you and assuring you the best of our services at all times.
+Yours Sincerely,
+
+
+Mr. Gokul Sankar
+CTO – Industry 4.0
+
+
+ 
+
+1.	Executive Summary - About Industry.AI
+Industry.AI is a global Industrial AI and project based IoT company that accelerates digital transformation across industries.  The company provides an end-to-end solution which includes installing IoT devices and sensors to collect data onto its IoT platform ‘Orion’, analyse the data using AI and ML algorithms, and then increasing productivity by providing actionable alerts and insights.  Industry.AI’s ‘Orion’ platform provides a suite of industrial AI software-as-a-service (SaaS) products/applications and services which utilizes its vast library of proprietary AI algorithms.  The SaaS products include asset health & predictive analytics for maintenance and process optimization (Predict.AI), inventory management (Spot.AI), supply chain optimization & asset tracking (Track.AI), performance monitoring, energy efficiency & sustainability (Conserve.AI), and visual analytics (Trust.AI) to drive safety, security, and quality in manufacturing.  
+The companies work across industries including manufacturing, renewable energy, ports, transportation, aviation, steel, real estate, automotive, energy, and oil & gas. 
+Using the AI platform, “Orion”, along with Industry.AI’s proprietary EDGE software, and applying big data analytics & deep learning, the company works with its customers to:
+•	Increase Productivity and Reliability  
+•	Reduce Costs and Increase Energy Efficiency
+•	Improve Quality, Safety & Sustainability
+We work with various industrial segments to offer customized solutions:
+
+ 
+
+ 
+
+
+ 
+
+
+
+
+
+
+2.	Our approach for production deployment 
+
+ 
+
+ 
+ 
+•	Data Collection: Gather all relevant IoT data.
+•	Data Preprocessing: Clean and preprocess the data.
+•	Exploratory Data Analysis (EDA): Understand the data's characteristics.
+•	Pattern Recognition: Use statistical methods or machine learning to identify patterns.
+•	Base Model: Developing a base model for failure prediction.
+•	Model Validation: Validating the result of the model with actual failures.
+•	Model Deployment: Deploying the model into client’s system
+
+3.	Press Machine Data Analysis - FMD3-12500T
+
+3.1	 Data Collection
+•	For this analysis, we obtained several CSV files, as shared by BFL, containing IoT data for the FMD3-12500T Press machine for the April-August months. These were the tags:
+•	PositionMachine
+•	BackShaftLeft
+•	BackShaftRight
+•	MPClutchAirPressureRiseTime
+•	EccentricShaftRight
+•	EccentricShaftLeft
+•	PitmanLeft
+•	PitmanRight
+•	MainMotorTemperature
+•	FlywheelSpeedDropInPercentage
+•	MainMotorStartingTime
+•	CAMTime
+
+
+
+
+3.2	Data Preprocessing
+Data preprocessing is a crucial step in the data analysis pipeline. It involves cleaning and transforming raw data into a format that could be effectively used for analysis. The main tasks included:
+1.	Handling Missing Values: Identified and imputed or removed missing values.
+2.	Data Type Conversion: Ensured that each column had the correct data type.
+3.	Feature Engineering: Created new features that might have been useful for analysis.
+4.	Data Normalization: Scaled the features for analysis.
+•	Missing Values
+ 
+We dropped the Nan values as we had a very good amount of data.
+
+
+
+
+
+
+
+
+•	Outlier Treatment
+
+	
+             Distribution plot before and after Outlier Treatment
+•	Heatmap
+ 
+Here's the heatmap of the correlation matrix, which provides a visual representation of how each sensor's readings are related to one another.
+
+• Red cells indicate a positive correlation.
+• Blue cells indicate a negative correlation.
+• The closer the value is to 1 or -1, the stronger the correlation.
+
+
+
+
+
+Some noteworthy observations:
+
+1.	BackShaftLeft and BackShaftRight have a strong positive correlation (0.95), indicating they often move in the same direction.
+2.	EccentricShaftRight, EccentricShaftLeft, and PitmanLeft also show strong positive correlations among themselves, with values ranging from 0.86 to 0.90.
+3.	MPClutchAirPressureRiseTime has a moderately negative correlation with CAMTime (-0.56).
+4.	FlywheelSpeedDropInPercentage has a moderate positive correlation with PositionMachine (0.25).
+
+3.3	Pattern Recognition
+Pattern recognition aims to identify regularities, trends, or anomalies in the data. Recognizing these patterns helped us understand the conditions leading up to machine failure and potentially prevented future downtimes and on the basis of this we claimed the findings in the Predictive Maintenance document
+We have conducted a preliminary analysis of the data for June, July, and August. Below are some key findings and points for discussion:
+ 
+1.	Incident Timing: While your email mentions the failure occurring on the midnight of August 28th, our algorithm indicates that the failure actually happened on the midnight of August 27th.
+  
+2.	Multiple Failures: We noticed evidence of more than one failure in the data provided.
+  
+3.	Predictive Capabilities: Our analysis suggests that these failures could have been predicted approximately 16 to 20 hours before they occurred. Implementing an hourly predictive algorithm can alert the shop floor in time to prevent unplanned downtime.
+  
+4.	Additional Sensors: The deployment of additional sensors, such as those for vibration and electrical signals, could enhance the prediction lead time. This will be increasingly effective as we scale up the algorithm.
+  
+5.	Data Consistency: The IoT data is generally consistent; however, we did notice some anomalous points likely due to sensor failures. These outliers are easily removable.
+  
+6.	Strong Correlations: Our data shows a strong correlation between component temperatures and also between positional and flywheel operations, indicating data reliability.
+  
+7.	Quality Indicators: Apart from failure indications, our algorithm also detected changes in normal operational patterns that could signify quality issues or product changeovers. Further investigation with machine operators and quality report from the plant is needed.
+These were the initial observations from the data.
+
+
+
+We focused on the following aspects:
+•	Data Visualization: Visualized the data and mapped it with the failure time.
+•	Time Series Analysis: Examined how key variables changed over time before the failure.
+•	Anomaly Detection: Identified any unusual patterns that deviated from the norm.
+•	Developing of Base Model: Developed a base model for failure prediction.
+We visualized all the parameters with respective to three months of data, here are some plots for the same.
+ 
+
+
+
+ 
+
+
+Out of so many parameters, our algorithm was able to drill down to the important parameters/features related to the problem mentioned. We focused PitmanRight as directed by our base algorithm.  From there we were able to perform a time-series decomposition analysis and here are the results.
+
+
+
+
+
+
+
+
+
+
+The descriptive statistics for the "PitmanRight" parameter were as follows:
+•	Count: 180,669 data points
+•	Mean: Approximately 48.77
+•	Standard Deviation: Approximately 4.83
+•	Minimum Value: 34
+•	25th Percentile (Q1): 46
+•	Median (50th Percentile): 49
+•	75th Percentile (Q3): 52
+•	Maximum Value: 66
+The statistics provide a general overview, indicating some variability in the data (std of 4.83) but no extreme outliers (min of 34 and max of 66 relative to the mean of 48.77).
+
+The time series decomposition was successful. Here's what each component represents:
+o	Original Data: This is the original "PitmanRight" time series data.
+o	Trend: This shows the underlying trend in the data. There appears to be some fluctuation, but it's not very strong.
+o	Seasonal: This captures the seasonality in the data, which seems relatively constant.
+o	Residual: These are the residual components after removing the trend and seasonality. They represent the noise in the data.
+
+The trend component does not show a significant upward or downward trend, which generally indicates that the data is relatively stable except two days.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.4	Evidence for Observations:
+
+Our algorithm was able to detect any deviations in the process parameters that could lead to failure with time. We are able to detect failures before 20-36 hours. It focus on Pitman tempeature . 
+
+
+
+•	Another failure was observed on 11th August which followed the same pattern.  
+
+
+
+
+
+
+The same pattern for Pitman Right was followed for another failure on 11th August.
+
+•	FlywheelSpeedDropInPercentage:
+
+The below graphs show the FlywheelSpeedDrop value with respect to three months of data, we used this data in our algorithm to find the anomalies present in the data. It may indicate quality defects or operational change for parts.
+
+
+
+
+
+
+
+
+FlywheelSpeedDropInPercentage vs Timestamp
+
+
+
+
+
+
+
+•	Flywheel Speed Drop Anomaly:
+
+Our algorithm detected some of the anomalies related to FlywheelspeeddropInPercentage where the FlywheelspeeddropInPercentage decreased suddenly here is one of those instances on 7th August, we can clearly observe a significant change in the pattern of Flywheel Speed which might have affected the quality of the forged material later.
+
+ 
+
+•	Running Hours:
+
+On the basis of FlywheelSpeed and Main Machine Position tags we were able to find the running hours of the machine hour wise, day wise and month wise. Here are some of the bar plots for the same.
+
+ 
+Running Hours for August
+ 
+Running Hours Month Wise
+ 
+
+3.5	Model Automation
+
+Based on the base model input and pattern observed we have automated ML model to run based on set frequency and it evaluate x period of time, learn and predict failure. 
+ 
+
+4.	Our proposal for 3 machines observation
+Our proposed approach will involve several major deliverables that align with your organization's goals and operational needs:
+•	Deployment of Base Model on IoT Data: We will initiate the engagement by deploying our base model into your virtual machine (VM) infrastructure and commencing the analysis of your IoT data.
+•	Collaborative Work with Machine Operators: Our team will work closely with your machine operators to annotate data and predict major failures, enhancing predictive maintenance strategies.
+•	CAP Analysis for Sensor Requirements: We will conduct a Critical Asset Performance (CAP) analysis to identify the sensor requirements necessary for early prediction, focusing on the elimination of unplanned downtime, particularly in the context of 'EQUIPMENT FAILURE LOSS.'
+•	Establishment of Business Benefits: Our objective is to establish clear and quantifiable business benefits derived from predictive analytics, providing a tangible understanding of the value this approach can bring to your operations. 
+•	Business Proposals for Large-Scale Deployment: Following the initial phase, we will submit comprehensive business proposals outlining the path to large-scale deployment based on our findings and the demonstrated value.
+
+1. Deployment of Base Model on IoT Data:
+Objective: Integrate our pre-existing predictive maintenance model into your infrastructure.
+Approach: 
+* Deploy our base model into your provided virtual machine infrastructure.  *Begin real-time analysis of IoT data to monitor and predict machine health.   * Fine-tune the model based on initial results to enhance its accuracy and reliability.
+2. Collaborative Work with Machine Operators:
+Objective: Achieve higher accuracy in failure prediction through operator insights.
+Approach:
+* Organize regular feedback sessions with machine operators to understand the nuances of machine operations and gather annotations on data. *Incorporate the feedback to refine the model and improve prediction accuracy. *Train machine operators on how to understand and respond to predictive maintenance alerts.
+
+
+
+3. CAP Analysis for Sensor Requirements:
+Objective: Determine sensor requirements for effective early prediction of failures.
+Approach: 
+  * Conduct a thorough Critical Asset Performance (CAP) analysis. * Identify gaps in current sensor placements or requirements for additional sensors. *Provide a detailed recommendation report on the necessary sensor placements, types, and configurations.
+4. Establishment of Business Benefits:
+Objective: Highlight the tangible benefits of predictive maintenance.
+Approach: 
+* Monitor and quantify the reduction in unplanned downtime and maintenance costs. *Evaluate the extension of machine life and any improvements in operational efficiency. *Deliver a comprehensive report detailing the ROI and other benefits derived from the predictive maintenance initiative.
+5. Business Proposals for Large-Scale Deployment:
+Objective: Provide a roadmap for scaling the predictive maintenance solution across all machines.
+Approach:
+* Based on the results and insights gained from the initial deployment, develop a tailored plan for a large-scale rollout. *Outline the infrastructure, resources, and investments required for the full-scale deployment. *Present potential challenges and solutions, ensuring a smooth transition to a large-scale predictive maintenance system.
+Technical Approach
+1. Data Engineering Approach:
+- Data Collection: Establish pipelines to gather raw data from IoT sensors, machine logs, and any other relevant sources.
+- Data Cleaning: Process the collected data to handle missing values, outliers, and inconsistencies.
+- Data Transformation: Transform raw data into a format suitable for analysis, ensuring it's structured, labeled, and ready for modeling.
+2. Data Analysis Approach:
+- Descriptive Analysis: Understand the basic characteristics, distributions, and patterns within the data.
+- Time Series Analysis: Examine data patterns over time to detect trends, seasonality, and anomalies.
+- Correlation Analysis: Identify relationships between different data points to understand potential causes of machine failures.
+3. Data Analytics Approach:
+- Predictive Modeling: Use machine learning techniques to predict potential machine failures based on historical and real-time data.
+- Model Validation: Continuously validate the model's predictions against real outcomes to ensure accuracy and reliability.
+- Feedback Loop: Incorporate feedback from machine operators and real-world outcomes to refine and improve the model over time.
+4. Scalable Architecture Plan:
+- Infrastructure Assessment: Evaluate the current infrastructure to identify potential bottlenecks or limitations.
+- Cloud Integration: If required, recommend and design cloud-based solutions to handle large-scale data processing and analytics.
+- Modular Design: Ensure that the architecture is modular, allowing for easy scaling and integration of new machines and data sources in the future.
+5.	Timeline and Deliverables
+
+	 Month 1: Deployment, Data Analysis, Site Assessment & Time Series Analysis
+Objective: Lay the foundation for predictive maintenance, understand operational dynamics, assess existing challenges, and conduct time series analysis of machine data.
+Deliverables:
+•	Base Model Deployment and Validation.
+•	IoT Data & Time Series Analysis Report.
+•	Site Visit & Machine Operation Assessment
+•	Downtime Analysis from SAP.
+   
+	 Month 2: Collaboration and CAP Analysis
+Objective: Refine model accuracy through collaboration with machine operators and evaluate sensor requirements.
+Deliverable:
+•	Collaboration Feedback Report.
+•	Critical Asset Performance (CAP) Analysis.
+ 
+	 Month 3: Business Benefits & Scale-up Proposal
+Objective: Demonstrate the tangible benefits derived from the predictive maintenance approach and provide a blueprint for large-scale deployment.
+Deliverables:
+•	Business Benefits Report.
+•	Large-Scale Deployment Proposal.
+
+Our tailored approach to predictive maintenance offers a unique blend of technology and human expertise. By integrating data analytics, machine learning, and the experience of your machine operators, we aim to deliver a predictive maintenance solution that not only reduces costs but also enhances operational efficiency. We are confident that our partnership will result in significant long-term benefits for your organization.
+
